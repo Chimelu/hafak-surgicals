@@ -2,25 +2,25 @@ import type { Product, Category, OfficeInfo } from '../types'
 
 export const categories: Category[] = [
   {
-    id: '1',
+    _id: '1',
     name: 'Diagnostic Tools',
     description: 'Advanced diagnostic equipment for accurate medical assessments',
     icon: '🔍'
   },
   {
-    id: '2',
+    _id: '2',
     name: 'Surgical Equipment',
     description: 'Professional surgical instruments and tools',
     icon: '⚡'
   },
   {
-    id: '3',
+    _id: '3',
     name: 'Consumables',
     description: 'Essential medical supplies and disposables',
     icon: '📦'
   },
   {
-    id: '4',
+    _id: '4',
     name: 'Monitoring Devices',
     description: 'Patient monitoring and vital signs equipment',
     icon: '📊'
@@ -29,7 +29,7 @@ export const categories: Category[] = [
 
 export const products: Product[] = [
   {
-    id: '1',
+    _id: '1',
     name: 'Digital Stethoscope',
     description: 'High-quality digital stethoscope with noise reduction technology for clear auscultation.',
     category: 'Diagnostic Tools',
@@ -39,7 +39,7 @@ export const products: Product[] = [
     specifications: ['Digital amplification', 'Noise reduction', 'Bluetooth connectivity', 'Rechargeable battery']
   },
   {
-    id: '2',
+    _id: '2',
     name: 'Surgical Scissors Set',
     description: 'Professional grade surgical scissors set with precision cutting edges.',
     category: 'Surgical Equipment',
@@ -49,7 +49,7 @@ export const products: Product[] = [
     specifications: ['Stainless steel', 'Sterilizable', 'Multiple sizes', 'Precision cutting']
   },
   {
-    id: '3',
+    _id: '3',
     name: 'Medical Gloves',
     description: 'Latex-free medical gloves for safe medical procedures.',
     category: 'Consumables',
@@ -59,7 +59,7 @@ export const products: Product[] = [
     specifications: ['Latex-free', 'Powder-free', 'Multiple sizes', 'Sterile']
   },
   {
-    id: '4',
+    _id: '4',
     name: 'Blood Pressure Monitor',
     description: 'Automatic digital blood pressure monitor with memory function.',
     category: 'Monitoring Devices',
@@ -69,7 +69,7 @@ export const products: Product[] = [
     specifications: ['Digital display', 'Memory function', 'Irregular heartbeat detection', 'Cuff included']
   },
   {
-    id: '5',
+    _id: '5',
     name: 'Ultrasound Machine',
     description: 'Portable ultrasound machine for diagnostic imaging.',
     category: 'Diagnostic Tools',
@@ -78,7 +78,7 @@ export const products: Product[] = [
     specifications: ['Portable design', 'High-resolution imaging', 'Multiple probes', 'Battery powered']
   },
   {
-    id: '6',
+    _id: '6',
     name: 'Surgical Forceps',
     description: 'Precision surgical forceps for delicate procedures.',
     category: 'Surgical Equipment',

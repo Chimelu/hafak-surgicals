@@ -76,7 +76,7 @@ const Analytics: React.FC = () => {
       }
       
       if (categoriesResponse.success && categoriesResponse.data) {
-        const categories = categoriesResponse.data || []
+        const categories = categoriesResponse.data.categories || categoriesResponse.data || []
         setStats(prev => ({ ...prev, totalCategories: categories.length }))
         
         // Generate category stats

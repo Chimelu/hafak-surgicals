@@ -4,8 +4,6 @@ import { EquipmentService, CategoryService } from '../../services/api'
 import type { Equipment, EquipmentCategory } from '../../types'
 import { 
   Plus, 
-  Edit, 
-  Trash2, 
   Search, 
   Filter,
   Package
@@ -496,7 +494,7 @@ interface EquipmentFormProps {
   setValidationErrors: (errors: Record<string, string>) => void
 }
 
-const EquipmentForm: React.FC<EquipmentFormProps> = ({ equipment, categories, onSave, onCancel, validationErrors, setValidationErrors }) => {
+const EquipmentForm: React.FC<EquipmentFormProps> = ({ equipment, categories, onSave, onCancel, validationErrors }) => {
   const [formData, setFormData] = useState({
     name: equipment?.name || '',
     description: equipment?.description || '',

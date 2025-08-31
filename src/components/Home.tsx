@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
-import { ArrowRight, Star, Package, Users, Award, Shield, Truck, Heart, Zap, CheckCircle } from 'lucide-react'
+import { ArrowRight, Star, Package, Users, Award, Shield, Truck } from 'lucide-react'
 
 const Home: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Equipment[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     fetchFeaturedProducts()
+    // Trigger animations after component mounts
+    const timer = setTimeout(() => setIsVisible(true), 100)
+    return () => clearTimeout(timer)
   }, [])
 
   const fetchFeaturedProducts = async () => {
@@ -62,9 +66,9 @@ const Home: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-blue-50">
-        <div className="text-center">
+        <div className="text-center animate-fade-in">
           <div className="animate-spin rounded-full h-32 w-32 border-b-4 border-red-600 mx-auto mb-4"></div>
-          <p className="text-xl text-gray-600">Loading amazing medical equipment...</p>
+          <p className="text-xl text-gray-600 animate-pulse">Loading amazing medical equipment...</p>
         </div>
       </div>
     )
@@ -72,40 +76,64 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-50 via-blue-50 to-red-100 py-24 relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-red-400 rounded-full"></div>
-          <div className="absolute bottom-10 right-10 w-24 h-24 bg-blue-400 rounded-full"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-red-300 rounded-full"></div>
+      {/* Hero Section with Curved Background */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Curved background with gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-blue-50 to-red-100">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fef2f2" stopOpacity="0.8"/>
+                    <stop offset="50%" stopColor="#eff6ff" stopOpacity="0.6"/>
+                    <stop offset="100%" stopColor="#fef2f2" stopOpacity="0.8"/>
+                  </linearGradient>
+                </defs>
+                <path 
+                  d="M0,200 Q300,100 600,200 T1200,200 L1200,800 L0,800 Z" 
+                  fill="url(#heroGradient)"
+                  className="animate-float"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Animated decorative elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-red-300 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-blue-300 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="mb-6">
-            <span className="inline-block bg-gradient-to-r from-red-600 to-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-4">
+          <div className={`mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <span className="inline-block bg-gradient-to-r from-red-600 to-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-4 animate-fade-in-up">
               Trusted by Healthcare Professionals Worldwide
             </span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Medical Equipment</span>
+          <h1 className={`text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600 animate-gradient">Medical Equipment</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
+          <p className={`text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             Discover our comprehensive range of high-quality medical equipment and supplies. 
             Trusted by healthcare professionals worldwide for excellence and reliability.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Link
               to="/products"
-              className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-5 rounded-xl text-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-3"
+              className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-5 rounded-xl text-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-3 animate-fade-in-up"
             >
               Browse Products
               <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/contact"
-              className="group border-2 border-blue-600 text-blue-600 px-10 py-5 rounded-xl text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105"
+              className="group border-2 border-blue-600 text-blue-600 px-10 py-5 rounded-xl text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105 animate-fade-in-up"
+              style={{ animationDelay: '0.2s' }}
             >
               Contact Us
             </Link>
@@ -113,37 +141,42 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Decorative Separator */}
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-white text-gray-400">✦ ✦ ✦</span>
-        </div>
+      {/* Curved Separator */}
+      <div className="relative -mt-20">
+        <svg className="w-full h-20" viewBox="0 0 1200 80" preserveAspectRatio="none">
+          <path 
+            d="M0,80 Q300,0 600,80 T1200,80 L1200,80 L0,80 Z" 
+            fill="white"
+            className="animate-slide-up"
+          />
+        </svg>
       </div>
 
-      {/* Stats Section */}
+      {/* Stats Section with Staggered Animation */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Impact in Numbers</h2>
             <p className="text-xl text-gray-600">Delivering excellence across the healthcare industry</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center group">
-                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 transition-all duration-300 group-hover:scale-110 ${
+              <div 
+                key={index} 
+                className={`text-center group transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 200}ms` }}
+              >
+                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${
                   index === 0 ? 'bg-gradient-to-br from-red-100 to-red-200' : 
                   index === 1 ? 'bg-gradient-to-br from-blue-100 to-blue-200' : 
                   'bg-gradient-to-br from-red-100 to-red-200'
                 }`}>
-                  <stat.icon className={`h-10 w-10 ${
+                  <stat.icon className={`h-10 w-10 transition-all duration-300 ${
                     index === 0 ? 'text-red-600' : index === 1 ? 'text-blue-600' : 'text-red-600'
                   }`} />
                 </div>
-                <div className="text-5xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
+                <div className="text-5xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors duration-300">
                   {stat.value}
                 </div>
                 <div className="text-xl text-gray-600 mb-2">{stat.label}</div>
@@ -153,26 +186,27 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Decorative Separator */}
+      {/* Curved Separator */}
       <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-white text-gray-400">✦ ✦ ✦</span>
-        </div>
+        <svg className="w-full h-16" viewBox="0 0 1200 64" preserveAspectRatio="none">
+          <path 
+            d="M0,0 Q300,64 600,0 T1200,0 L1200,64 L0,64 Z" 
+            fill="#f9fafb"
+            className="animate-slide-down"
+          />
+        </svg>
       </div>
 
-      {/* Featured Products */}
+      {/* Featured Products with Card Animations */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Products</h2>
             <p className="text-xl text-gray-600">Quality medical equipment for your healthcare needs</p>
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl mb-8 text-center max-w-2xl mx-auto">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl mb-8 text-center max-w-2xl mx-auto animate-shake">
               <div className="flex items-center justify-center gap-2">
                 <span className="text-red-500">⚠</span>
                 <span>{error}</span>
@@ -181,38 +215,43 @@ const Home: React.FC = () => {
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <div key={product._id} className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-2">
-                <div className="relative">
+            {featuredProducts.map((product, index) => (
+              <div 
+                key={product._id} 
+                className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 hover:rotate-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <div className="relative overflow-hidden">
                   <img
                     src={product.image || '/placeholder-image.svg'}
                     alt={product.name}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                     onError={(e) => {
                       e.currentTarget.src = '/placeholder-image.svg'
                     }}
                   />
                   {product.isFeatured && (
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 rounded-full text-sm font-medium shadow-lg">
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 rounded-full text-sm font-medium shadow-lg animate-pulse">
                       Featured
                     </div>
                   )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 
                 <div className="p-8">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full">
+                    <span className="text-sm text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full group-hover:bg-blue-100 transition-colors">
                       {product.categoryName || 'Medical Equipment'}
                     </span>
                     {product.rating && (
-                      <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full">
+                      <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full group-hover:bg-yellow-100 transition-colors">
                         <Star className="h-4 w-4 text-yellow-500 fill-current" />
                         <span className="text-sm text-yellow-700 font-medium">{product.rating}</span>
                       </div>
                     )}
                   </div>
                   
-                  <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors">
+                  <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors duration-300">
                     {product.name}
                   </h3>
                   
@@ -221,7 +260,7 @@ const Home: React.FC = () => {
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-gray-900">${product.price}</span>
+                    <span className="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">${product.price}</span>
                     <Link
                       to={`/products/${product._id}`}
                       className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -235,15 +274,15 @@ const Home: React.FC = () => {
           </div>
 
           {featuredProducts.length === 0 && !loading && (
-            <div className="text-center py-16">
+            <div className="text-center py-16 animate-fade-in">
               <div className="text-gray-400 mb-4">
-                <Package className="h-16 w-16 mx-auto" />
+                <Package className="h-16 w-16 mx-auto animate-bounce" />
               </div>
               <p className="text-gray-500 text-xl">No products available at the moment.</p>
             </div>
           )}
 
-          <div className="text-center mt-16">
+          <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Link
               to="/products"
               className="group inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-4 rounded-xl font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -255,143 +294,152 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Decorative Separator */}
+      {/* Curved Separator */}
       <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-white text-gray-400">✦ ✦ ✦</span>
-        </div>
+        <svg className="w-full h-16" viewBox="0 0 1200 64" preserveAspectRatio="none">
+          <path 
+            d="M0,64 Q300,0 600,64 T1200,64 L1200,64 L0,64 Z" 
+            fill="white"
+            className="animate-slide-up"
+          />
+        </svg>
       </div>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-gradient-to-br from-red-50 via-blue-50 to-red-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      {/* Why Choose Us with Floating Cards */}
+      <section className="py-20 bg-gradient-to-br from-red-50 via-blue-50 to-red-100 relative overflow-hidden">
+        {/* Floating background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-16 h-16 bg-red-400 rounded-full animate-float" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute bottom-20 right-20 w-12 h-12 bg-blue-400 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 right-1/3 w-8 h-8 bg-red-300 rounded-full animate-float" style={{ animationDelay: '4s' }}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Hafak Surgicals?</h2>
             <p className="text-xl text-gray-600">We're committed to providing the best medical equipment solutions with excellence</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Package className="h-8 w-8 text-red-600" />
+            {[
+              {
+                icon: Package,
+                title: "Quality Assured",
+                description: "All our products meet international quality standards and certifications, ensuring the highest level of safety and reliability.",
+                color: "red"
+              },
+              {
+                icon: Users,
+                title: "Expert Support",
+                description: "Our team of medical equipment specialists is here to help you choose the right products for your specific needs.",
+                color: "blue"
+              },
+              {
+                icon: Award,
+                title: "Trusted Partner",
+                description: "Serving healthcare professionals with dedication and reliability for decades, building lasting relationships.",
+                color: "red"
+              }
+            ].map((item, index) => (
+              <div 
+                key={index}
+                className={`group bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 200}ms` }}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-br from-${item.color}-100 to-${item.color}-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                  <item.icon className={`h-8 w-8 text-${item.color}-600`} />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition-colors">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{item.description}</p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Quality Assured</h3>
-              <p className="text-gray-600 leading-relaxed">All our products meet international quality standards and certifications, ensuring the highest level of safety and reliability.</p>
-            </div>
-            
-            <div className="group bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Users className="h-8 w-8 text-blue-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Expert Support</h3>
-              <p className="text-gray-600 leading-relaxed">Our team of medical equipment specialists is here to help you choose the right products for your specific needs.</p>
-            </div>
-            
-            <div className="group bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Award className="h-8 w-8 text-red-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Trusted Partner</h3>
-              <p className="text-gray-600 leading-relaxed">Serving healthcare professionals with dedication and reliability for decades, building lasting relationships.</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Decorative Separator */}
+      {/* Curved Separator */}
       <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-white text-gray-400">✦ ✦ ✦</span>
-        </div>
+        <svg className="w-full h-16" viewBox="0 0 1200 64" preserveAspectRatio="none">
+          <path 
+            d="M0,0 Q300,64 600,0 T1200,0 L1200,64 L0,64 Z" 
+            fill="#f9fafb"
+            className="animate-slide-down"
+          />
+        </svg>
       </div>
 
-      {/* Services Section */}
+      {/* Services Section with Icon Animations */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
             <p className="text-xl text-gray-600">Comprehensive medical equipment solutions for healthcare professionals</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                <Package className="h-10 w-10 text-red-600" />
+            {[
+              { icon: Package, title: "Equipment Sales", description: "Wide range of medical equipment and supplies for all healthcare needs", color: "red" },
+              { icon: Shield, title: "Maintenance", description: "Professional maintenance and repair services to keep your equipment running", color: "blue" },
+              { icon: Truck, title: "Installation", description: "Expert installation and setup services for complex medical equipment", color: "red" },
+              { icon: Users, title: "Training", description: "Staff training and technical support to maximize equipment efficiency", color: "blue" }
+            ].map((service, index) => (
+              <div 
+                key={index}
+                className={`group text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <div className={`w-20 h-20 bg-gradient-to-br from-${service.color}-100 to-${service.color}-200 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl`}>
+                  <service.icon className={`h-10 w-10 text-${service.color}-600 group-hover:scale-110 transition-transform`} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">{service.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Equipment Sales</h3>
-              <p className="text-gray-600 leading-relaxed">Wide range of medical equipment and supplies for all healthcare needs</p>
-            </div>
-            
-            <div className="group text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                <Shield className="h-10 w-10 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Maintenance</h3>
-              <p className="text-gray-600 leading-relaxed">Professional maintenance and repair services to keep your equipment running</p>
-            </div>
-            
-            <div className="group text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                <Truck className="h-10 w-10 text-red-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Installation</h3>
-              <p className="text-gray-600 leading-relaxed">Expert installation and setup services for complex medical equipment</p>
-            </div>
-            
-            <div className="group text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                <Users className="h-10 w-10 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Training</h3>
-              <p className="text-gray-600 leading-relaxed">Staff training and technical support to maximize equipment efficiency</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Decorative Separator */}
+      {/* Curved Separator */}
       <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-white text-gray-400">✦ ✦ ✦</span>
-        </div>
+        <svg className="w-full h-16" viewBox="0 0 1200 64" preserveAspectRatio="none">
+          <path 
+            d="M0,64 Q300,0 600,64 T1200,64 L1200,64 L0,64 Z" 
+            fill="white"
+            className="animate-slide-up"
+          />
+        </svg>
       </div>
 
-      {/* CTA Section */}
+      {/* CTA Section with Animated Background */}
       <section className="py-20 bg-gradient-to-r from-red-600 via-red-700 to-blue-600 relative overflow-hidden">
-        {/* Decorative background elements */}
+        {/* Animated background elements */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full"></div>
-          <div className="absolute bottom-10 left-10 w-24 h-24 bg-white rounded-full"></div>
+          <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute bottom-10 left-10 w-24 h-24 bg-white rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-white rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
-          <p className="text-red-100 mb-10 max-w-3xl mx-auto text-xl leading-relaxed">
-            Contact us today to discuss your medical equipment needs. Our experts are here to help you find the perfect solutions for your healthcare facility.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              to="/products"
-              className="group bg-white text-red-600 px-10 py-4 rounded-xl text-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-3"
-            >
-              Browse Equipment
-              <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              to="/contact"
-              className="group border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-white hover:text-red-600 transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us
-            </Link>
+          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
+            <p className="text-red-100 mb-10 max-w-3xl mx-auto text-xl leading-relaxed">
+              Contact us today to discuss your medical equipment needs. Our experts are here to help you find the perfect solutions for your healthcare facility.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                to="/products"
+                className="group bg-white text-red-600 px-10 py-4 rounded-xl text-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-3"
+              >
+                Browse Equipment
+                <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/contact"
+                className="group border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-white hover:text-red-600 transition-all duration-300 transform hover:scale-105"
+              >
+                Contact Us
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -400,7 +448,7 @@ const Home: React.FC = () => {
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-6">
-            <Package className="h-12 w-12 text-red-400 mx-auto" />
+            <Package className="h-12 w-12 text-red-400 mx-auto animate-bounce" />
           </div>
           <p className="text-lg mb-4">
             <strong>Hafak Surgicals</strong> - Your Trusted Medical Equipment Partner
@@ -411,6 +459,8 @@ const Home: React.FC = () => {
           </p>
         </div>
       </footer>
+
+      {/* Animation styles are included in the main CSS */}
     </div>
   )
 }

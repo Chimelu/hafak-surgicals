@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AdminNavbar from './AdminNavbar'
-import { Plus, Edit, Trash2, Eye } from 'lucide-react'
+import { Plus, Edit, Trash2 } from 'lucide-react'
 import type { EquipmentCategory } from '../../types'
 import { CategoryService } from '../../services/api'
 import toast from 'react-hot-toast'
@@ -56,7 +56,7 @@ const CategoryManagement: React.FC = () => {
         const response = await CategoryService.update(editingCategory._id, formData)
         if (response.success) {
           setCategories(categories.map(cat =>
-            cat._id === editingCategory._id ? (response.data as EquipmentCategory) : cat
+            cat._id === editingCategory._id ? (response.data.category as EquipmentCategory) : cat
           ))
           setIsModalOpen(false)
           setEditingCategory(null)

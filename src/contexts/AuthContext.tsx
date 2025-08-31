@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 interface AuthContextType {
   user: AdminUser | null
   isLoading: boolean
+  error: string | null
   login: (username: string, password: string) => Promise<boolean>
   logout: () => void
   checkAuth: () => Promise<void>
@@ -29,6 +30,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<AdminUser | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   // Check if user is already authenticated on mount
   useEffect(() => {
@@ -119,6 +121,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Remove token on any error to be safe
       localStorage.removeItem('token')
       setUser(null)
+      setError(error instanceof Error ? error.message : 'Authentication failed')
     } finally {
       console.log('AuthContext: Setting isLoading to false')
       setIsLoading(false)
@@ -147,6 +150,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           localStorage.setItem('token', token)
           console.log('AuthContext: Token stored, setting user:', userData)
           setUser(userData as AdminUser)
+          setError(null) // Clear any previous errors
           toast.success('Login successful! Welcome back!')
           return true
         } else {
@@ -155,12 +159,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
       } else {
         const errorMessage = response.message || 'Login failed'
+        setError(errorMessage)
         toast.error(errorMessage)
         return false
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Login failed'
       console.error('Login error:', error)
+      setError(errorMessage)
       toast.error(errorMessage)
       return false
     }
@@ -169,12 +175,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token')
     setUser(null)
+    setError(null) // Clear any errors
     toast.success('Logged out successfully!')
   }
 
   const value: AuthContextType = {
     user,
     isLoading,
+    error,
     login,
     logout,
     checkAuth,

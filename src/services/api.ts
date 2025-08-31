@@ -34,17 +34,7 @@ class ApiService {
     return localStorage.getItem('token');
   }
 
-  // Get headers with authentication
-  private getHeaders(): HeadersInit {
-    const headers: HeadersInit = {
-      'Content-Type': 'application/json',
-    };
-
-    // Let the backend handle authorization - don't add Authorization header automatically
-    // The backend will check the token and handle authorization as needed
-
-    return headers;
-  }
+  // getHeaders method removed as it's not used
 
   // Generic request method
   private async request<T>(

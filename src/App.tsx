@@ -1,5 +1,6 @@
-import React from 'react'
+// React import removed as it's not needed in modern React
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './styles/animations.css'
 import { AuthProvider } from './contexts/AuthContext'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import Navbar from './components/Navbar'

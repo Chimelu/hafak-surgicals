@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Phone, Mail, MapPin, Clock, Search, User } from 'lucide-react'
+import { Menu, X, Phone, Mail, MapPin, Clock, Search } from 'lucide-react'
 import { navigation } from '../data/navigation'
 
 const Navbar = () => {
@@ -109,9 +109,9 @@ const Navbar = () => {
             <button className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
               <Search className="h-5 w-5" />
             </button>
-            <button className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
+            {/* <button className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
               <User className="h-5 w-5" />
-            </button>
+            </button> */}
                          <Link
                to="/products"
                className="px-4 py-2 bg-gradient-to-r from-red-600 to-blue-600 text-white rounded-xl font-semibold hover:from-red-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -160,10 +160,10 @@ const Navbar = () => {
                   <Search className="h-5 w-5 mr-2" />
                   Search
                 </button>
-                <button className="flex items-center justify-center px-4 py-3 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
+                {/* <button className="flex items-center justify-center px-4 py-3 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
                   <User className="h-5 w-5 mr-2" />
                   Account
-                </button>
+                </button> */}
               </div>
                              <Link
                  to="/products"

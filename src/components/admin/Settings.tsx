@@ -4,9 +4,6 @@ import { useAuth } from '../../contexts/AuthContext'
 import { AuthService } from '../../services/api'
 import { 
   User, 
-  Shield, 
-  Bell, 
-  Save,
   Lock,
   Eye,
   EyeOff
@@ -80,60 +77,7 @@ const Settings: React.FC = () => {
     }
   }
 
-  const [settings, setSettings] = useState({
-    notifications: {
-      email: true,
-      lowStock: true,
-      newEquipment: false,
-      categoryUpdates: true
-    },
-    security: {
-      twoFactorAuth: false,
-      sessionTimeout: 30,
-      passwordExpiry: 90
-    },
-    display: {
-      theme: 'light',
-      language: 'en',
-      itemsPerPage: 20
-    }
-  })
-
-  const handleNotificationChange = (key: string, value: boolean) => {
-    setSettings(prev => ({
-      ...prev,
-      notifications: {
-        ...prev.notifications,
-        [key]: value
-      }
-    }))
-  }
-
-  const handleSecurityChange = (key: string, value: string | number | boolean) => {
-    setSettings(prev => ({
-      ...prev,
-      security: {
-        ...prev.security,
-        [key]: value
-      }
-    }))
-  }
-
-  const handleDisplayChange = (key: string, value: string | number) => {
-    setSettings(prev => ({
-      ...prev,
-      display: {
-        ...prev.display,
-        [key]: value
-      }
-    }))
-  }
-
-  const handleSave = () => {
-    // In production, this would save to an API
-    console.log('Settings saved:', settings)
-    alert('Settings saved successfully!')
-  }
+  // Settings state removed as it's not currently used
 
   return (
     <div className="min-h-screen bg-gray-50">

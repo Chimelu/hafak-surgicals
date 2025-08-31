@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
-import { Search, Filter, Star, ShoppingCart, Heart } from 'lucide-react'
+import { Search, Filter, Star, Heart } from 'lucide-react'
 import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_TEMPLATE } from '../config/constants'
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Equipment[]>([])
   const [categories, setCategories] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  // error state removed as it's not displayed in the UI
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
+  // totalPages removed as it's not used in the UI
 
   useEffect(() => {
     fetchCategories()
@@ -26,7 +26,7 @@ const Products: React.FC = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true)
-      setError(null)
+      // Error handling removed as it's not displayed in the UI
       
       console.log('Fetching products with params:', { currentPage, searchTerm, selectedCategory })
       
@@ -42,15 +42,13 @@ const Products: React.FC = () => {
       if (response.success) {
         // The API returns { success: true, data: [...], pagination: {...} }
         setProducts(response.data || [])
-        if (response.pagination) {
-          setTotalPages(response.pagination.pages)
-        }
+        // Pagination handling removed as it's not used in the UI
         console.log('Products fetched:', response.data?.length || 0)
       } else {
-        setError(response.message || 'Failed to fetch products')
+        console.error('Failed to fetch products:', response.message)
       }
     } catch (error) {
-      setError('Error fetching products')
+      console.error('Error fetching products:', error)
       console.error('Error fetching products:', error)
     } finally {
       setLoading(false)
@@ -262,67 +260,6 @@ const ProductCard: React.FC<{ product: Equipment; onWhatsAppQuote: (product: Equ
   </div>
 )
 
-// Product List Item Component
-const ProductListItem: React.FC<{ product: Equipment }> = ({ product }) => (
-  <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
-    <div className="flex gap-6">
-      <div className="relative flex-shrink-0">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-32 h-32 object-cover rounded-lg"
-        />
-        {product.availability === 'Out of Stock' && (
-          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium">
-            Out of Stock
-          </div>
-        )}
-      </div>
-      
-      <div className="flex-1">
-        <div className="flex items-start justify-between mb-2">
-          <div>
-            <span className="text-sm text-blue-600 font-medium">{product.categoryName || 'Medical Equipment'}</span>
-            <h3 className="text-xl font-semibold text-gray-900 mt-1">{product.name}</h3>
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-50">
-              <Heart className="h-5 w-5 text-gray-400" />
-            </button>
-            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-50">
-              <ShoppingCart className="h-5 w-5 text-gray-600" />
-            </button>
-          </div>
-        </div>
-        
-        <p className="text-gray-600 mb-3">{product.description}</p>
-        
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            <span>Brand: {product.brand}</span>
-            <span>Model: {product.model}</span>
-            <span>Condition: {product.condition}</span>
-          </div>
-          {product.rating && (
-            <div className="flex items-center gap-1">
-              <Star className="h-4 w-4 text-yellow-400 fill-current" />
-              <span className="text-sm text-gray-600">{product.rating}</span>
-            </div>
-          )}
-        </div>
-        
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold text-gray-900">${product.price}</span>
-          <Link
-            to={`/products/${product._id}`}
-            className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors"
-          >
-            View Details
-          </Link>
-        </div>
-      </div>
-    </div>
-  </div>
-)
+// ProductListItem component removed as it's not used
 
 export default Products

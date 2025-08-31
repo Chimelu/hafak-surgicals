@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
-import { ArrowLeft, Star, ShoppingCart, Heart, Shield, Truck, CheckCircle } from 'lucide-react'
+import { ArrowLeft, Star, Heart, Shield, Truck, CheckCircle } from 'lucide-react'
 import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_TEMPLATE } from '../config/constants'
 
 const ProductDetail: React.FC = () => {
