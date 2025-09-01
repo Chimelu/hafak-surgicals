@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
-import { ArrowRight, Package, Users, Award, Shield, Truck, Wrench, Star } from 'lucide-react'
+import { ArrowRight, Package, Users, Award, Shield, Truck, Star } from 'lucide-react'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 
 const Home: React.FC = () => {

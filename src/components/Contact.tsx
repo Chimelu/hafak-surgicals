@@ -1,16 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Phone, Mail, MapPin, Clock, MessageCircle, Navigation } from 'lucide-react'
 import { officeInfo } from '../data/mockData'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  })
-
   // Scroll to top when component mounts
   useScrollToTop([])
   

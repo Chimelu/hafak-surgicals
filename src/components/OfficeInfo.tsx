@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { officeInfo } from '../data/mockData'
-import { Phone, Mail, MapPin, Clock, MessageCircle, Navigation, Car, Bus, Train } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, MessageCircle, Navigation, Car, Bus } from 'lucide-react'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 
 const OfficeInfo: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('location')
-
   // Scroll to top when component mounts
   useScrollToTop([])
   
