@@ -76,7 +76,7 @@ const Navbar = () => {
                <h1 className="text-2xl font-black text-gray-900 group-hover:text-red-600 transition-colors duration-300">
                  Hafak Surgicals
                </h1>
-               <p className="text-sm text-gray-600 font-medium">Medical Equipment Specialists</p>
+               <p className="text-sm text-gray-600 font-medium">Medical Equipment and consumables</p>
              </div>
            </Link>
 

@@ -100,9 +100,9 @@ export const officeInfo: OfficeInfo = {
 
 export const companyInfo = {
   name: 'Hafak Surgicals',
-  tagline: 'Your Trusted Partner in Medical Equipment',
-  description: 'Hafak Surgicals is a leading provider of high-quality medical equipment and supplies in Nigeria. With years of experience in the healthcare industry, we are committed to delivering innovative solutions that enhance patient care and support healthcare professionals across the country.',
-  mission: 'To provide Nigerian healthcare professionals with reliable, innovative, and high-quality medical equipment that improves patient outcomes and enhances the delivery of healthcare services.',
-  vision: 'To be the most trusted name in medical equipment in Nigeria, recognized for our commitment to quality, innovation, and customer satisfaction.',
-  experience: 'With over 15 years of experience in the medical equipment industry, Hafak Surgicals has built a reputation for excellence, reliability, and customer service throughout Nigeria.'
+  tagline: 'Your Trusted Partner in Medical Equipment/consumables',
+  description: 'Hafak Surgicals is a leading provider of high-quality medical equipment/consumables and supplies in Nigeria. With years of experience in the healthcare industry, we are committed to delivering innovative solutions that enhance patient care and support healthcare pro',
+  mission: 'To provide Nigerian healthcare professionals with reliable, innovative, and high-quality medical equipment/consumables that improves patient outcomes and enhances the delivery of healthcare services.',
+  vision: 'To be the most trusted name in medical equipment/consumables in Nigeria, recognized for our commitment to quality, innovation, and customer satisfaction.',
+  experience: 'With over 15 years of experience in the medical equipment/consumables industry, Hafak Surgicals has built a reputation for excellence, reliability, and customer service throughout Nigeria.'
 }

@@ -103,8 +103,8 @@ const Products: React.FC = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-red-50 to-blue-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl font-bold text-gray-900">Medical Equipment</h1>
-          <p className="mt-2 text-gray-600">Discover our comprehensive range of medical equipment and supplies</p>
+          <h1 className="text-3xl font-bold text-gray-900">Medical Equipment/consumables</h1>
+          <p className="mt-2 text-gray-600">Discover our comprehensive range of medical equipment/consumables and supplies</p>
         </div>
       </div>
 
@@ -217,7 +217,7 @@ const ProductCard: React.FC<{ product: Equipment; onWhatsAppQuote: (product: Equ
     
     <div className="p-4">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-sm text-blue-600 font-medium">{product.categoryName || 'Medical Equipment'}</span>
+        <span className="text-sm text-blue-600 font-medium">{product.categoryName || 'Medical Equipment/consumables'}</span>
         {product.rating && (
           <div className="flex items-center gap-1">
             <Star className="h-4 w-4 text-yellow-400 fill-current" />

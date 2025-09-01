@@ -132,7 +132,7 @@ const Footer = () => {
             <div className="text-center">
               <h3 className="text-2xl font-bold text-white mb-4">Stay Updated</h3>
               <p className="text-gray-300 mb-6 max-w-md mx-auto">
-                Subscribe to our newsletter for the latest medical equipment updates and industry insights.
+                Subscribe to our newsletter for the latest medical equipment/consumables updates and industry insights.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 <input

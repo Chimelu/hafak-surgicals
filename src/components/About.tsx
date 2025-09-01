@@ -10,12 +10,12 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">About Hafak Surgicals</h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
-            Your trusted partner in medical equipment for over 15 years
+            Your trusted partner in medical equipment/consumables for over 15 years
           </p>
           <button
             onClick={() => {
               const currentUrl = window.location.href
-              const message = `Hi! I'd like to learn more about Hafak Surgicals and get a quote for medical equipment.\n\nAbout Page: ${currentUrl}`
+              const message = `Hi! I'd like to learn more about Hafak Surgicals and get a quote for medical equipment/consumables.\n\nAbout Page: ${currentUrl}`
               const whatsappUrl = `https://wa.me/${officeInfo.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`
               window.open(whatsappUrl, '_blank')
             }}
@@ -113,7 +113,7 @@ const About = () => {
                 <span className="text-3xl font-bold text-blue-600">1000+</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Products Delivered</h3>
-              <p className="text-gray-600">Successfully providing medical equipment to healthcare facilities</p>
+              <p className="text-gray-600">Successfully providing medical equipment/consumables to healthcare facilities</p>
             </div>
             
             <div className="text-center">

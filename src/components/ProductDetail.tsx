@@ -127,7 +127,7 @@ const ProductDetail: React.FC = () => {
               {/* Product Info */}
               <div className="p-8">
                 <div className="mb-6">
-                  <span className="text-sm text-blue-600 font-medium">{product.categoryName || 'Medical Equipment'}</span>
+                  <span className="text-sm text-blue-600 font-medium">{product.categoryName || 'Medical Equipment/consumables'}</span>
                   <h1 className="text-3xl font-bold text-gray-900 mt-2 mb-4">{product.name}</h1>
                   {product.rating && (
                     <div className="flex items-center gap-2 mb-4">
@@ -152,7 +152,7 @@ const ProductDetail: React.FC = () => {
 
                 <div className="border-t border-gray-200 pt-6 mb-6">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-3xl font-bold text-gray-900">${product.price}</span>
+                    <span className="text-3xl font-bold text-gray-900">₦{product.price}</span>
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                       product.availability === 'In Stock' ? 'bg-green-100 text-green-800' :
                       product.availability === 'Low Stock' ? 'bg-yellow-100 text-yellow-800' :

@@ -49,7 +49,7 @@ const Home: React.FC = () => {
     {
       icon: Package,
       value: '500+',
-      label: 'Medical Equipment'
+      label: 'Medical Equipment/consumables'
     },
     {
       icon: Users,
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-blue-50">
         <div className="text-center animate-fade-in">
           <div className="animate-spin rounded-full h-32 w-32 border-b-4 border-red-600 mx-auto mb-4"></div>
-          <p className="text-xl text-gray-600 animate-pulse">Loading amazing medical equipment...</p>
+          <p className="text-xl text-gray-600 animate-pulse">Loading amazing medical equipment/consumables...</p>
         </div>
       </div>
     )
@@ -116,10 +116,10 @@ const Home: React.FC = () => {
           </div>
           
           <h1 className={`text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600 animate-gradient">Medical Equipment</span>
+            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600 animate-gradient">Medical Equipment/consumables</span>
           </h1>
           <p className={`text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Discover our comprehensive range of high-quality medical equipment and supplies. 
+            Discover our comprehensive range of high-quality medical equipment/consumables and supplies. 
             Trusted by healthcare professionals worldwide for excellence and reliability.
           </p>
           <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -202,7 +202,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Products</h2>
-            <p className="text-xl text-gray-600">Quality medical equipment for your healthcare needs</p>
+            <p className="text-xl text-gray-600">Quality medical equipment/consumables for your healthcare needs</p>
           </div>
 
           {error && (
@@ -241,7 +241,7 @@ const Home: React.FC = () => {
                 <div className="p-8">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full group-hover:bg-blue-100 transition-colors">
-                      {product.categoryName || 'Medical Equipment'}
+                      {product.categoryName || 'Medical Equipment/consumables'}
                     </span>
                     {product.rating && (
                       <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full group-hover:bg-yellow-100 transition-colors">
@@ -260,7 +260,7 @@ const Home: React.FC = () => {
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">${product.price}</span>
+                    <span className="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">₦{product.price}</span>
                     <Link
                       to={`/products/${product._id}`}
                       className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -317,7 +317,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Hafak Surgicals?</h2>
-            <p className="text-xl text-gray-600">We're committed to providing the best medical equipment solutions with excellence</p>
+            <p className="text-xl text-gray-600">We're committed to providing the best medical equipment/consumables solutions with excellence</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -331,7 +331,7 @@ const Home: React.FC = () => {
               {
                 icon: Users,
                 title: "Expert Support",
-                description: "Our team of medical equipment specialists is here to help you choose the right products for your specific needs.",
+                description: "Our team of medical equipment/consumables specialists is here to help you choose the right products for your specific needs.",
                 color: "blue"
               },
               {
@@ -373,14 +373,14 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p className="text-xl text-gray-600">Comprehensive medical equipment solutions for healthcare professionals</p>
+            <p className="text-xl text-gray-600">Comprehensive medical equipment/consumables solutions for healthcare professionals</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Package, title: "Equipment Sales", description: "Wide range of medical equipment and supplies for all healthcare needs", color: "red" },
-              { icon: Shield, title: "Maintenance", description: "Professional maintenance and repair services to keep your equipment running", color: "blue" },
-              { icon: Truck, title: "Installation", description: "Expert installation and setup services for complex medical equipment", color: "red" },
+              { icon: Package, title: "Equipment Sales", description: "Wide range of medical equipment/consumables and supplies for all healthcare needs", color: "red" },
+              { icon: Shield, title: "Maintenance", description: "Regular maintenance and repair services to keep your medical equipment/consumables running smoothly", color: "blue" },
+              { icon: Truck, title: "Installation", description: "Expert installation and setup services for complex medical equipment/consumables", color: "red" },
               { icon: Users, title: "Training", description: "Staff training and technical support to maximize equipment efficiency", color: "blue" }
             ].map((service, index) => (
               <div 
@@ -423,7 +423,7 @@ const Home: React.FC = () => {
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
             <p className="text-red-100 mb-10 max-w-3xl mx-auto text-xl leading-relaxed">
-              Contact us today to discuss your medical equipment needs. Our experts are here to help you find the perfect solutions for your healthcare facility.
+              Contact us today to discuss your medical equipment/consumables needs. Our experts are here to help you find the perfect solutions for your healthcare facility.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
@@ -451,7 +451,7 @@ const Home: React.FC = () => {
             <Package className="h-12 w-12 text-red-400 mx-auto animate-bounce" />
           </div>
           <p className="text-lg mb-4">
-            <strong>Hafak Surgicals</strong> - Your Trusted Medical Equipment Partner
+            <strong>Hafak Surgicals</strong> - Your Trusted Medical Equipment/consumables Partner
           </p>
           <p className="text-gray-400">
             &copy; {new Date().getFullYear()} Hafak Surgicals. All rights reserved. | 

@@ -275,7 +275,7 @@ const OfficeInfo = () => {
             <div className="bg-red-50 border border-red-200 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-red-900 mb-4">Emergency Contact</h3>
               <p className="text-sm text-red-800 mb-3">
-                For urgent medical equipment needs outside business hours:
+                For urgent medical equipment/consumables needs outside business hours:
               </p>
               <div className="space-y-2">
                 <div className="flex items-center">

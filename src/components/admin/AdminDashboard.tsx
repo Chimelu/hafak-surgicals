@@ -64,7 +64,7 @@ const AdminDashboard: React.FC = () => {
   const adminCards = [
     {
       title: 'Equipment Management',
-      description: 'Add, edit, and manage medical equipment',
+      description: 'Add, edit, and manage medical equipment/consumables',
       icon: Package,
       link: '/admin/equipment',
       color: 'bg-blue-500 hover:bg-blue-600'
@@ -95,7 +95,7 @@ const AdminDashboard: React.FC = () => {
   const quickActions = [
     {
       title: 'Add New Equipment',
-      description: 'Quickly add a new medical equipment',
+      description: 'Quickly add a new medical equipment/consumables',
       icon: Plus,
       link: '/admin/equipment/add',
       color: 'bg-blue-100 text-blue-700 hover:bg-blue-200'

@@ -5,7 +5,7 @@ import { officeInfo } from '../data/mockData'
 const FloatingWhatsApp: React.FC = () => {
   const handleWhatsApp = () => {
     const currentUrl = window.location.href
-    const message = `Hi! I'd like to get more information about your medical equipment and services.\n\nWebsite: ${currentUrl}`
+    const message = `Hi! I'd like to get more information about your medical equipment/consumables and services.\n\nWebsite: ${currentUrl}`
     const whatsappUrl = `https://wa.me/${officeInfo.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
   }
