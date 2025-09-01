@@ -2,6 +2,22 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, Navigation, Car, Bus } from 
 import { officeInfo } from '../data/mockData'
 
 const OfficeInfo = () => {
+  // Office address for Google Maps
+  const officeAddress = 'H4 Suite C, Transpharm Plaza, Opp. Jabi Garage, By Thisday Newspaper, Jabi, Abuja'
+  
+  // Google Maps functions
+  const openGoogleMaps = () => {
+    const encodedAddress = encodeURIComponent(officeAddress)
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
+    window.open(googleMapsUrl, '_blank')
+  }
+
+  const getDirections = () => {
+    const encodedAddress = encodeURIComponent(officeAddress)
+    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`
+    window.open(directionsUrl, '_blank')
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -26,9 +42,25 @@ const OfficeInfo = () => {
                   <div className="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                     <MapPin className="h-6 w-6 text-red-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="font-semibold text-gray-900 mb-2">Address</h3>
-                    <p className="text-gray-700 leading-relaxed">{officeInfo.address}</p>
+                    <p className="text-gray-700 leading-relaxed mb-4">{officeInfo.address}</p>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={openGoogleMaps}
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm"
+                      >
+                        <MapPin className="h-4 w-4" />
+                        View on Map
+                      </button>
+                      <button
+                        onClick={getDirections}
+                        className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 text-sm"
+                      >
+                        <Navigation className="h-4 w-4" />
+                        Get Directions
+                      </button>
+                    </div>
                   </div>
                 </div>
 
@@ -146,20 +178,38 @@ const OfficeInfo = () => {
                     <li>• In Transpharm Plaza, H4 Suite C</li>
                   </ul>
                 </div>
-              </div>
-            </div>
 
-            {/* Map Placeholder */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Find Us on the Map</h2>
-              <div className="bg-gray-200 h-80 rounded-lg flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <MapPin className="h-20 w-20 mx-auto mb-4" />
-                  <p className="text-xl mb-2">Interactive Map Coming Soon</p>
-                  <p className="text-sm max-w-md">
-                    We're working on adding an interactive map to help you navigate to our location. 
-                    For now, please use the address and directions provided above.
-                  </p>
+                {/* Enhanced Location Information */}
+                <div className="bg-blue-50 rounded-lg p-6">
+                  <h4 className="font-semibold text-blue-900 mb-4">📍 Interactive Navigation</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-white rounded-lg p-4 border border-blue-200">
+                      <div className="flex items-center mb-2">
+                        <MapPin className="h-5 w-5 text-blue-600 mr-2" />
+                        <span className="font-medium text-blue-900">View on Google Maps</span>
+                      </div>
+                      <p className="text-sm text-blue-700 mb-3">See our exact location on Google Maps</p>
+                      <button
+                        onClick={openGoogleMaps}
+                        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm"
+                      >
+                        Open Maps
+                      </button>
+                    </div>
+                    <div className="bg-white rounded-lg p-4 border border-green-200">
+                      <div className="flex items-center mb-2">
+                        <Navigation className="h-5 w-5 text-green-600 mr-2" />
+                        <span className="font-medium text-green-900">Get Directions</span>
+                      </div>
+                      <p className="text-sm text-green-700 mb-3">Get turn-by-turn directions to our office</p>
+                      <button
+                        onClick={getDirections}
+                        className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200 text-sm"
+                      >
+                        Get Directions
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -185,16 +235,19 @@ const OfficeInfo = () => {
                 </button>
                 
                 <button
-                  onClick={() => {
-                    const currentUrl = window.location.href
-                    const message = `Hi! I need directions to your office.\n\nOffice Info Page: ${currentUrl}`
-                    const whatsappUrl = `https://wa.me/${officeInfo.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`
-                    window.open(whatsappUrl, '_blank')
-                  }}
+                  onClick={getDirections}
                   className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
                 >
                   <Navigation className="h-5 w-5" />
                   Get Directions
+                </button>
+
+                <button
+                  onClick={openGoogleMaps}
+                  className="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200 flex items-center justify-center gap-2"
+                >
+                  <MapPin className="h-5 w-5" />
+                  View on Map
                 </button>
               </div>
             </div>

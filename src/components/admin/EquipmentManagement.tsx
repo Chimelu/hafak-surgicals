@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AdminNavbar from './AdminNavbar'
-import { EquipmentService, CategoryService } from '../../services/api'
+import { EquipmentService, CategoryService, ImageUploadService } from '../../services/api'
 import type { Equipment, EquipmentCategory } from '../../types'
 import { 
   Plus, 
@@ -88,32 +88,66 @@ const EquipmentManagement: React.FC = () => {
     loadData()
   }
 
-  const handleSave = async (equipmentData: any) => {
+  const handleSave = async (equipmentData: any, imageFile?: File | null) => {
     try {
       setLoading(true)
       setError(null)
       setValidationErrors({}) // Clear previous validation errors
 
-      // Convert data to FormData for file upload
-      const formData = new FormData()
-      Object.keys(equipmentData).forEach(key => {
-        if (key === 'specifications' || key === 'features') {
-          // Handle arrays
-          equipmentData[key].forEach((item: string) => {
-            if (item.trim()) {
-              formData.append(key, item.trim())
-            }
-          })
-        } else if (equipmentData[key] !== undefined && equipmentData[key] !== '') {
-          formData.append(key, equipmentData[key])
+      // Build JSON payload
+      const payload: any = {
+        name: equipmentData.name,
+        description: equipmentData.description,
+        categoryId: equipmentData.categoryId,
+        image: equipmentData.image || '',
+        price: equipmentData.price === '' || equipmentData.price === undefined ? undefined : Number(equipmentData.price),
+        availability: equipmentData.availability,
+        specifications: Array.isArray(equipmentData.specifications)
+          ? equipmentData.specifications.filter((s: string) => s && s.trim() !== '')
+          : [],
+        features: Array.isArray(equipmentData.features)
+          ? equipmentData.features.filter((f: string) => f && f.trim() !== '')
+          : [],
+        brand: equipmentData.brand,
+        model: equipmentData.model,
+        condition: equipmentData.condition,
+        warranty: equipmentData.warranty,
+        stockQuantity: typeof equipmentData.stockQuantity === 'number'
+          ? equipmentData.stockQuantity
+          : Number(equipmentData.stockQuantity || 0),
+        minStockLevel: typeof equipmentData.minStockLevel === 'number'
+          ? equipmentData.minStockLevel
+          : Number(equipmentData.minStockLevel || 0)
+      }
+
+      // Upload image if a new file was selected
+      if (imageFile) {
+        try {
+          const uploadRes: any = await ImageUploadService.uploadImage(imageFile)
+          if (uploadRes && uploadRes.success && uploadRes.data && uploadRes.data.url) {
+            payload.image = uploadRes.data.url
+          } else if (uploadRes && uploadRes.url) {
+            // Fallback if API returns plain object
+            payload.image = uploadRes.url
+          } else {
+            toast.error('Image upload failed to return a URL')
+          }
+        } catch (e) {
+          const msg = e instanceof Error ? e.message : 'Image upload failed'
+          toast.error(msg)
+          setLoading(false)
+          return
         }
-      })
+      } else if (editingEquipment && editingEquipment.image && !payload.image) {
+        // Preserve existing image if editing and no new image provided
+        payload.image = editingEquipment.image
+      }
 
       let response
       if (editingEquipment) {
-        response = await EquipmentService.update(editingEquipment._id, formData)
+        response = await EquipmentService.update(editingEquipment._id, payload)
       } else {
-        response = await EquipmentService.create(formData)
+        response = await EquipmentService.create(payload)
       }
 
       if (response.success) {
@@ -488,7 +522,7 @@ const EquipmentManagement: React.FC = () => {
 interface EquipmentFormProps {
   equipment: Equipment | null
   categories: EquipmentCategory[]
-  onSave: (data: any) => void
+  onSave: (data: any, imageFile?: File | null) => void
   onCancel: () => void
   validationErrors: Record<string, string>
   setValidationErrors: (errors: Record<string, string>) => void
@@ -544,42 +578,14 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ equipment, categories, on
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Convert form data to FormData for file upload
-    const submitData = new FormData()
-    
-    // Debug: Log the form data before creating FormData
-    console.log('Frontend form data before FormData:', formData)
-    
-    // Add all form fields
-    Object.keys(formData).forEach(key => {
-      if (key === 'specifications' || key === 'features') {
-        const arrayValue = formData[key as keyof typeof formData] as string[]
-        arrayValue.forEach((item: string) => {
-          if (item.trim()) {
-            submitData.append(key, item.trim())
-            console.log(`Added ${key}:`, item.trim())
-          }
-        })
-      } else if (formData[key as keyof typeof formData] !== undefined && formData[key as keyof typeof formData] !== '') {
-        submitData.append(key, String(formData[key as keyof typeof formData]))
-        console.log(`Added ${key}:`, formData[key as keyof typeof formData])
-      }
-    })
-
-    // Add image file if selected
-    if (imageFile) {
-      submitData.append('image', imageFile)
-      console.log('Added image file:', imageFile.name)
+    // Prepare plain JSON payload; image upload handled upstream
+    const submitData: any = {
+      ...formData,
+      specifications: formData.specifications.filter((s) => s && s.trim() !== ''),
+      features: formData.features.filter((f) => f && f.trim() !== ''),
     }
 
-    // Debug: Log what's in the FormData
-    console.log('FormData entries:')
-    for (let [key, value] of submitData.entries()) {
-      console.log(`${key}:`, value)
-    }
-
-    console.log('Sending FormData to backend...')
-    onSave(submitData)
+    onSave(submitData, imageFile)
   }
 
   return (

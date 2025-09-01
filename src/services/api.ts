@@ -212,6 +212,40 @@ export class AuthService {
   }
 }
 
+// Image upload service
+export class ImageUploadService {
+  // Upload image to cloudinary
+  static async uploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const url = `${API_BASE_URL}/equipment/test-upload`;
+    const config: RequestInit = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: formData,
+    };
+
+    try {
+      const response = await fetch(url, config);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || `HTTP error! status: ${response.status}`);
+      }
+
+      return data;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      }
+      throw new Error('An unexpected error occurred');
+    }
+  }
+}
+
 // Equipment service (for both admin and public use)
 export class EquipmentService {
   // Get all equipment (admin)
@@ -270,15 +304,21 @@ export class EquipmentService {
     return response;
   }
 
-  // Create equipment (admin)
-  static async create(equipmentData: FormData) {
-    const response = await api.postFormData<{ equipment: any }>('/equipment', equipmentData);
+  // Create equipment (admin) - now using JSON instead of FormData
+  static async create(equipmentData: any) {
+    const token = localStorage.getItem('token');
+    const response = await api.post<{ equipment: any }>('/equipment', equipmentData, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {}
+    });
     return response;
   }
 
-  // Update equipment (admin)
-  static async update(id: string, equipmentData: FormData) {
-    const response = await api.postFormData<{ equipment: any }>(`/equipment/${id}`, equipmentData);
+  // Update equipment (admin) - now using JSON instead of FormData
+  static async update(id: string, equipmentData: any) {
+    const token = localStorage.getItem('token');
+    const response = await api.put<{ equipment: any }>(`/equipment/${id}`, equipmentData, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {}
+    });
     return response;
   }
 
