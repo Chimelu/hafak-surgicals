@@ -1,8 +1,15 @@
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Award, Target, Users, Clock, Shield, Heart } from 'lucide-react'
 import { companyInfo, officeInfo } from '../data/mockData'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 
-const About = () => {
+const About: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  // Scroll to top when component mounts
+  useScrollToTop([])
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}

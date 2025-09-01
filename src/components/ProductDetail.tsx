@@ -4,12 +4,16 @@ import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
 import { ArrowLeft, Star, Heart, Shield, Truck, CheckCircle } from 'lucide-react'
 import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_TEMPLATE } from '../config/constants'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const [product, setProduct] = useState<Equipment | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  // Scroll to top when component mounts or product ID changes
+  useScrollToTop([id])
 
   useEffect(() => {
     if (id) {

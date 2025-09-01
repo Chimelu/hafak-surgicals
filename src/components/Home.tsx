@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
-import { ArrowRight, Star, Package, Users, Award, Shield, Truck } from 'lucide-react'
+import { ArrowRight, Package, Users, Award, Shield, Truck, Wrench, Star } from 'lucide-react'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 
 const Home: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Equipment[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [isVisible, setIsVisible] = useState(false)
+
+  // Scroll to top when component mounts
+  useScrollToTop([])
 
   useEffect(() => {
     fetchFeaturedProducts()
@@ -243,12 +247,12 @@ const Home: React.FC = () => {
                     <span className="text-sm text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full group-hover:bg-blue-100 transition-colors">
                       {product.categoryName || 'Medical Equipment/consumables'}
                     </span>
-                    {product.rating && (
-                      <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full group-hover:bg-yellow-100 transition-colors">
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        <span className="text-sm text-yellow-700 font-medium">{product.rating}</span>
-                      </div>
-                    )}
+                                            {product.rating && (
+                          <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full group-hover:bg-yellow-100 transition-colors">
+                            <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                            <span className="text-sm text-yellow-700 font-medium">{product.rating}</span>
+                          </div>
+                        )}
                   </div>
                   
                   <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors duration-300">

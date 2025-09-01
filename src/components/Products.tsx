@@ -4,6 +4,7 @@ import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
 import { Search, Filter, Star, Heart } from 'lucide-react'
 import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_TEMPLATE } from '../config/constants'
+import { useScrollToTop, scrollToTop } from '../hooks/useScrollToTop'
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Equipment[]>([])
@@ -14,6 +15,9 @@ const Products: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   // totalPages removed as it's not used in the UI
+
+  // Scroll to top when component mounts
+  useScrollToTop([])
 
   useEffect(() => {
     fetchCategories()
@@ -73,12 +77,16 @@ const Products: React.FC = () => {
   const handleSearch = () => {
     setCurrentPage(1)
     fetchProducts()
+    // Scroll to top when search results change
+    scrollToTop()
   }
 
   const handleCategoryChange = (category: string) => {
     console.log('Category changed to:', category)
     setSelectedCategory(category)
     setCurrentPage(1)
+    // Scroll to top when category changes
+    scrollToTop()
   }
 
   const handleWhatsAppQuote = (product: Equipment) => {

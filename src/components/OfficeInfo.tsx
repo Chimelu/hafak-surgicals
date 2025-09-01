@@ -1,7 +1,14 @@
-import { Phone, Mail, MapPin, Clock, MessageCircle, Navigation, Car, Bus } from 'lucide-react'
+import React, { useState } from 'react'
 import { officeInfo } from '../data/mockData'
+import { Phone, Mail, MapPin, Clock, MessageCircle, Navigation, Car, Bus, Train } from 'lucide-react'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 
-const OfficeInfo = () => {
+const OfficeInfo: React.FC = () => {
+  const [activeTab, setActiveTab] = useState('location')
+
+  // Scroll to top when component mounts
+  useScrollToTop([])
+  
   // Office address for Google Maps
   const officeAddress = 'H4 Suite C, Transpharm Plaza, Opp. Jabi Garage, By Thisday Newspaper, Jabi, Abuja'
   

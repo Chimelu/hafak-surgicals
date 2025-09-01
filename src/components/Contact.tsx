@@ -1,7 +1,19 @@
+import React, { useState } from 'react'
 import { Phone, Mail, MapPin, Clock, MessageCircle, Navigation } from 'lucide-react'
 import { officeInfo } from '../data/mockData'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 
-const Contact = () => {
+const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+
+  // Scroll to top when component mounts
+  useScrollToTop([])
+  
   // Office address for Google Maps
   const officeAddress = 'H4 Suite C, Transpharm Plaza, Opp. Jabi Garage, By Thisday Newspaper, Jabi, Abuja'
   
