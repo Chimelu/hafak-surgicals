@@ -77,7 +77,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Curved Background */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* Curved background with gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-blue-50 to-red-100">
           <div className="absolute inset-0">
@@ -100,8 +100,8 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Animated decorative elements */}
-        <div className="absolute inset-0 opacity-20">
+        {/* Animated decorative elements - hidden on mobile for better readability */}
+        <div className="absolute inset-0 opacity-20 hidden md:block">
           <div className="absolute top-10 left-10 w-32 h-32 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
           <div className="absolute bottom-10 right-10 w-24 h-24 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
           <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-red-300 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
@@ -109,30 +109,30 @@ const Home: React.FC = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className={`mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <span className="inline-block bg-gradient-to-r from-red-600 to-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-4 animate-fade-in-up">
+          <div className={`mb-4 sm:mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <span className="inline-block bg-gradient-to-r from-red-600 to-blue-600 text-white px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 animate-fade-in-up">
               Trusted by Healthcare Professionals Worldwide
             </span>
           </div>
           
-          <h1 className={`text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600 animate-gradient">Medical Equipment/consumables</span>
           </h1>
-          <p className={`text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className={`text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 md:mb-10 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             Discover our comprehensive range of high-quality medical equipment/consumables and supplies. 
             Trusted by healthcare professionals worldwide for excellence and reliability.
           </p>
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Link
               to="/products"
-              className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-5 rounded-xl text-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-3 animate-fade-in-up"
+              className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl text-base sm:text-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 sm:gap-3 animate-fade-in-up"
             >
               Browse Products
-              <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/contact"
-              className="group border-2 border-blue-600 text-blue-600 px-10 py-5 rounded-xl text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105 animate-fade-in-up"
+              className="group border-2 border-blue-600 text-blue-600 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl text-base sm:text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105 animate-fade-in-up"
               style={{ animationDelay: '0.2s' }}
             >
               Contact Us
@@ -142,8 +142,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* Curved Separator */}
-      <div className="relative -mt-20">
-        <svg className="w-full h-20" viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <div className="relative -mt-12 sm:-mt-16 md:-mt-20">
+        <svg className="w-full h-12 sm:h-16 md:h-20" viewBox="0 0 1200 80" preserveAspectRatio="none">
           <path 
             d="M0,80 Q300,0 600,80 T1200,80 L1200,80 L0,80 Z" 
             fill="white"
@@ -153,33 +153,33 @@ const Home: React.FC = () => {
       </div>
 
       {/* Stats Section with Staggered Animation */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Impact in Numbers</h2>
-            <p className="text-xl text-gray-600">Delivering excellence across the healthcare industry</p>
+          <div className={`text-center mb-8 sm:mb-12 md:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Our Impact in Numbers</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Delivering excellence across the healthcare industry</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
             {stats.map((stat, index) => (
               <div 
                 key={index} 
                 className={`text-center group transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${
+                <div className={`inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl mb-4 sm:mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${
                   index === 0 ? 'bg-gradient-to-br from-red-100 to-red-200' : 
                   index === 1 ? 'bg-gradient-to-br from-blue-100 to-blue-200' : 
                   'bg-gradient-to-br from-red-100 to-red-200'
                 }`}>
-                  <stat.icon className={`h-10 w-10 transition-all duration-300 ${
+                  <stat.icon className={`h-8 w-8 sm:h-10 sm:w-10 transition-all duration-300 ${
                     index === 0 ? 'text-red-600' : index === 1 ? 'text-blue-600' : 'text-red-600'
                   }`} />
                 </div>
-                <div className="text-5xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-red-600 transition-colors duration-300">
                   {stat.value}
                 </div>
-                <div className="text-xl text-gray-600 mb-2">{stat.label}</div>
+                <div className="text-base sm:text-lg md:text-xl text-gray-600 mb-2">{stat.label}</div>
               </div>
             ))}
           </div>
