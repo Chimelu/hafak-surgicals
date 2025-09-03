@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
   useScrollToTop([])
   
   // Office address for Google Maps
-  const officeAddress = 'H4 Suite C, Transpharm Plaza, Opp. Jabi Garage, By Thisday Newspaper, Jabi, Abuja'
+  const officeAddress = 'H4 Suite B&C, Transpharm Plaza, Opp. Jabi Garage, By Thisday Newspaper, Jabi, Abuja'
   
   // Google Maps functions
   const openGoogleMaps = () => {

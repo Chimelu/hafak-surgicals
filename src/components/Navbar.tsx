@@ -42,7 +42,7 @@ const Navbar = () => {
               </div>
               <div className="flex items-center space-x-2 hover:text-blue-200 transition-colors duration-200">
                 <MapPin className="h-4 w-4" />
-                <span className="hidden xl:inline">H4 Suite C, Transpharm Plaza, Jabi, Abuja</span>
+                <span className="hidden xl:inline">H4 Suite B&C, Transpharm Plaza, Jabi, Abuja</span>
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-2">
@@ -74,7 +74,7 @@ const Navbar = () => {
              </div>
              <div>
                <h1 className="text-2xl font-black text-gray-900 group-hover:text-red-600 transition-colors duration-300">
-                 Hafak Surgicals
+                 Hafak Surgicals Ltd
                </h1>
                <p className="text-sm text-gray-600 font-medium">Medical Equipment and consumables</p>
              </div>

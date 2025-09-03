@@ -90,7 +90,7 @@ export const products: Product[] = [
 ]
 
 export const officeInfo: OfficeInfo = {
-  address: 'H4 Suite C, Transpharm Plaza, Opp. Jabi Garage, By Thisday Newspaper, Jabi, Abuja',
+  address: 'H4 Suite B&C, Transpharm Plaza, Opp. Jabi Garage, By Thisday Newspaper, Jabi, Abuja',
   phone: '+2348033760003',
   whatsapp: '+2348033760003',
   email: 'hafakgroups@yahoo.com',

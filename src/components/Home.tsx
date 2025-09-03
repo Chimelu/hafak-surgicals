@@ -434,7 +434,7 @@ const Home: React.FC = () => {
                 to="/products"
                 className="group bg-white text-red-600 px-10 py-4 rounded-xl text-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-3"
               >
-                Browse Equipment
+                Browse Equipment/Consumables
                 <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
