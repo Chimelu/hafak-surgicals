@@ -206,7 +206,7 @@ export class AuthService {
   }
 
   // Change password
-  static async changePassword(passwordData: { currentPassword: string; newPassword: string }) {
+  static async changePassword(passwordData: { currentPassword: string; newPassword: string; userId: string }) {
     const response = await api.put<{ message: string }>('/auth/change-password', passwordData);
     return response;
   }

@@ -54,9 +54,17 @@ const Settings: React.FC = () => {
 
     try {
       setIsChangingPassword(true)
+      
+      // Check if user is available
+      if (!user?._id) {
+        toast.error('User information not available. Please log in again.')
+        return
+      }
+      
       const response = await AuthService.changePassword({
         currentPassword: passwordData.currentPassword,
-        newPassword: passwordData.newPassword
+        newPassword: passwordData.newPassword,
+        userId: user._id
       })
 
       if (response.success) {
@@ -95,6 +103,39 @@ const Settings: React.FC = () => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
+          {/* User Information */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center mb-6">
+              <User className="h-6 w-6 text-green-600 mr-3" />
+              <h3 className="text-lg font-medium text-gray-900">Current User</h3>
+            </div>
+            
+            {user ? (
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span className="text-sm font-medium text-gray-700">Username:</span>
+                  <span className="text-sm text-gray-900">{user.username}</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span className="text-sm font-medium text-gray-700">Email:</span>
+                  <span className="text-sm text-gray-900">{user.email}</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span className="text-sm font-medium text-gray-700">Role:</span>
+                  <span className="text-sm text-gray-900 capitalize">{user.role}</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-sm font-medium text-gray-700">User ID:</span>
+                  <span className="text-sm text-gray-500 font-mono">{user._id}</span>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-4">
+                <p className="text-gray-500">User information not available</p>
+              </div>
+            )}
+          </div>
+
           {/* Change Password - Main Focus */}
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center mb-6">
@@ -186,6 +227,11 @@ const Settings: React.FC = () => {
               </div>
               
               <div className="pt-4">
+                <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                  <p className="text-sm text-blue-800">
+                    <strong>Note:</strong> Your user ID ({user?._id || 'Not available'}) will be automatically included in the password change request for security verification.
+                  </p>
+                </div>
                 <button
                   type="submit"
                   disabled={isChangingPassword}

@@ -108,15 +108,22 @@ const ProductDetail: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Product Image */}
               <div className="p-8">
-                <div className="relative">
-                                     <img
-                     src={product.image || '/placeholder-image.svg'}
-                     alt={product.name}
-                     className="w-full h-96 object-cover rounded-lg"
-                     onError={(e) => {
-                       e.currentTarget.src = '/placeholder-image.svg'
-                     }}
-                   />
+                <div className="relative image-container rounded-lg">
+                  <img
+                    src={product.image || '/placeholder-image.svg'}
+                    alt={product.name}
+                    className="w-full h-80 sm:h-96 md:h-[500px] object-cover object-center"
+                    onLoad={(e) => {
+                      e.currentTarget.classList.remove('image-loading')
+                    }}
+                    onError={(e) => {
+                      e.currentTarget.src = '/placeholder-image.svg'
+                      e.currentTarget.classList.remove('image-loading')
+                    }}
+                    onLoadStart={(e) => {
+                      e.currentTarget.classList.add('image-loading')
+                    }}
+                  />
                   {product.availability === 'Out of Stock' && (
                     <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded text-sm font-medium">
                       Out of Stock

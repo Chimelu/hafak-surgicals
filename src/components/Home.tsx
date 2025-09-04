@@ -225,15 +225,24 @@ const Home: React.FC = () => {
                 className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 hover:rotate-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={product.image || '/placeholder-image.svg'}
-                    alt={product.name}
-                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-                    onError={(e) => {
-                      e.currentTarget.src = '/placeholder-image.svg'
-                    }}
-                  />
+                <div className="relative overflow-hidden rounded-t-xl bg-gray-100">
+                  <div className="w-full h-48 sm:h-56 md:h-64 lg:h-72">
+                    <img
+                      src={product.image || '/placeholder-image.svg'}
+                      alt={product.name}
+                      className="w-full h-full object-contain object-center group-hover:scale-110 transition-transform duration-500"
+                      onLoad={(e) => {
+                        e.currentTarget.classList.remove('image-loading')
+                      }}
+                      onError={(e) => {
+                        e.currentTarget.src = '/placeholder-image.svg'
+                        e.currentTarget.classList.remove('image-loading')
+                      }}
+                      onLoadStart={(e) => {
+                        e.currentTarget.classList.add('image-loading')
+                      }}
+                    />
+                  </div>
                   {product.isFeatured && (
                     <div className="absolute top-4 left-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 rounded-full text-sm font-medium shadow-lg animate-pulse">
                       Featured

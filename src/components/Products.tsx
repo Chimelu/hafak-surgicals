@@ -200,17 +200,22 @@ const Products: React.FC = () => {
 // Product Card Component
 const ProductCard: React.FC<{ product: Equipment; onWhatsAppQuote: (product: Equipment) => void }> = ({ product, onWhatsAppQuote }) => (
   <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden border border-gray-200">
-    <div className="relative">
+    <div className="relative image-container">
       <img
         src={product.image || '/placeholder-image.svg'}
         alt={product.name}
-        className="w-full h-48 object-cover"
-        onLoad={() => {
+        className="w-full h-48 sm:h-56 md:h-64 object-cover object-center"
+        onLoad={(e) => {
           console.log('Image loaded successfully:', product.image)
+          e.currentTarget.classList.remove('image-loading')
         }}
         onError={(e) => {
           console.error('Image failed to load:', product.image, e)
           e.currentTarget.src = '/placeholder-image.svg'
+          e.currentTarget.classList.remove('image-loading')
+        }}
+        onLoadStart={(e) => {
+          e.currentTarget.classList.add('image-loading')
         }}
       />
       <button className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-50">
