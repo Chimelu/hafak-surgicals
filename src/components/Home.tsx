@@ -385,7 +385,7 @@ const Home: React.FC = () => {
               { icon: Package, title: "Equipment Sales", description: "Wide range of medical equipment/consumables and supplies for all healthcare needs", color: "red" },
               { icon: Shield, title: "Maintenance", description: "Regular maintenance and repair services to keep your medical equipment/consumables running smoothly", color: "blue" },
               { icon: Truck, title: "Installation", description: "Expert installation and setup services for complex medical equipment/consumables", color: "red" },
-              { icon: Users, title: "Training", description: "Staff training and technical support to maximize equipment efficiency", color: "blue" }
+              { icon: Users, title: "Training", description: "Staff training and technical support to maximize equipment/cosumables efficiency", color: "blue" }
             ].map((service, index) => (
               <div 
                 key={index}

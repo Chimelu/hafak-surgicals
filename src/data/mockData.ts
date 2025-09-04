@@ -99,7 +99,7 @@ export const officeInfo: OfficeInfo = {
 }
 
 export const companyInfo = {
-  name: 'Hafak Surgicals',
+  name: 'Hafak Surgicals Ltd',
   tagline: 'Your Trusted Partner in Medical Equipment/consumables',
   description: 'Hafak Surgicals is a leading provider of high-quality medical equipment/consumables and supplies in Nigeria. With years of experience in the healthcare industry, we are committed to delivering innovative solutions that enhance patient care and support healthcare pro',
   mission: 'To provide Nigerian healthcare professionals with reliable, innovative, and high-quality medical equipment/consumables that improves patient outcomes and enhances the delivery of healthcare services.',

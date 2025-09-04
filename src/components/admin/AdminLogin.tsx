@@ -118,9 +118,9 @@ const AdminLogin: React.FC = () => {
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            {/* <p className="text-sm text-gray-600">
               Demo credentials: owner / HafakSurgicals2024!
-            </p>
+            </p> */}
           </div>
         </form>
       </div>
