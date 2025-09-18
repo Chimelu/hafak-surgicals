@@ -34,7 +34,6 @@ export const products: Product[] = [
     description: 'High-quality digital stethoscope with noise reduction technology for clear auscultation.',
     category: 'Diagnostic Tools',
     image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop',
-    price: 299,
     availability: 'In Stock',
     specifications: ['Digital amplification', 'Noise reduction', 'Bluetooth connectivity', 'Rechargeable battery']
   },
@@ -44,7 +43,6 @@ export const products: Product[] = [
     description: 'Professional grade surgical scissors set with precision cutting edges.',
     category: 'Surgical Equipment',
     image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop',
-    price: 189,
     availability: 'In Stock',
     specifications: ['Stainless steel', 'Sterilizable', 'Multiple sizes', 'Precision cutting']
   },
@@ -54,7 +52,6 @@ export const products: Product[] = [
     description: 'Latex-free medical gloves for safe medical procedures.',
     category: 'Consumables',
     image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop',
-    price: 25,
     availability: 'In Stock',
     specifications: ['Latex-free', 'Powder-free', 'Multiple sizes', 'Sterile']
   },
@@ -64,7 +61,6 @@ export const products: Product[] = [
     description: 'Automatic digital blood pressure monitor with memory function.',
     category: 'Monitoring Devices',
     image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop',
-    price: 89,
     availability: 'Out of Stock',
     specifications: ['Digital display', 'Memory function', 'Irregular heartbeat detection', 'Cuff included']
   },
@@ -83,7 +79,6 @@ export const products: Product[] = [
     description: 'Precision surgical forceps for delicate procedures.',
     category: 'Surgical Equipment',
     image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop',
-    price: 75,
     availability: 'In Stock',
     specifications: ['Stainless steel', 'Fine tips', 'Sterilizable', 'Multiple sizes']
   }

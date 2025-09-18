@@ -272,8 +272,7 @@ const Home: React.FC = () => {
                     {product.description}
                   </p>
                   
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">₦{product.price}</span>
+                  <div className="flex items-center justify-end">
                     <Link
                       to={`/products/${product._id}`}
                       className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"

@@ -249,7 +249,6 @@ const ProductCard: React.FC<{ product: Equipment; onWhatsAppQuote: (product: Equ
        </p>
        
        <div className="flex items-center justify-between mb-3">
-         <span className="text-base sm:text-lg font-bold text-gray-900">₦{product.price}</span>
          <span className="text-xs sm:text-sm text-gray-500">{product.brand}</span>
        </div>
       

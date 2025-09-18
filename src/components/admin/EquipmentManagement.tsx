@@ -100,7 +100,6 @@ const EquipmentManagement: React.FC = () => {
         description: equipmentData.description,
         categoryId: equipmentData.categoryId,
         image: equipmentData.image || '',
-        price: equipmentData.price === '' || equipmentData.price === undefined ? undefined : Number(equipmentData.price),
         availability: equipmentData.availability,
         specifications: Array.isArray(equipmentData.specifications)
           ? equipmentData.specifications.filter((s: string) => s && s.trim() !== '')
@@ -370,9 +369,6 @@ const EquipmentManagement: React.FC = () => {
                     Category
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Price
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Availability
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -409,9 +405,6 @@ const EquipmentManagement: React.FC = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {item.categoryName || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {item.price ? `$${item.price}` : 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
@@ -534,7 +527,6 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ equipment, categories, on
     description: equipment?.description || '',
     categoryId: equipment?.categoryId || '',
     image: equipment?.image || '',
-    price: equipment?.price || undefined,
     availability: equipment?.availability || 'In Stock',
     specifications: equipment?.specifications || [''],
     features: equipment?.features || [''],
@@ -668,19 +660,6 @@ const EquipmentForm: React.FC<EquipmentFormProps> = ({ equipment, categories, on
                 )}
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Price</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={formData.price || ''}
-                  onChange={(e) => handleInputChange('price', e.target.value === '' ? undefined : parseFloat(e.target.value) || undefined)}
-                  className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                {validationErrors.price && (
-                  <p className="mt-1 text-sm text-red-600">{validationErrors.price}</p>
-                )}
-              </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700">Availability</label>

@@ -10,7 +10,6 @@ export const WHATSAPP_MESSAGE_TEMPLATE = (product: any) => {
   return `Hello! I'm interested in getting a quote for this product:
 
 *${product.name || 'Product Name'}*
-*Price:* $${product.price || '0'}
 *Brand:* ${product.brand || 'N/A'}
 
 *Product Link:* ${productUrl}

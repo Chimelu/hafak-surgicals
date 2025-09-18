@@ -46,10 +46,8 @@ const Analytics: React.FC = () => {
           return item.stockQuantity && item.minStockLevel && item.stockQuantity <= item.minStockLevel
         }).length
         
-        // Calculate total value
-        const totalValue = equipment.reduce((sum: number, item: any) => {
-          return sum + (item.price || 0)
-        }, 0)
+        // Calculate total value (removed price calculation)
+        const totalValue = 0
         
         setStats({
           totalEquipment,
