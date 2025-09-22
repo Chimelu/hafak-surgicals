@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://hafaksurgicals-backend.onrender.com/api';
+const API_BASE_URL = 'https://hafak-surgicals-backend.vercel.app/api';
 
 // API response interface
 export interface ApiResponse<T> {
