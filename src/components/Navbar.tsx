@@ -32,8 +32,8 @@ const Navbar = () => {
             <div className="flex items-center space-x-6">
                              <div className="flex items-center space-x-2 hover:text-blue-200 transition-colors duration-200">
                  <Phone className="h-4 w-4" />
-                 <span className="hidden sm:inline">+2348033760003</span>
-                 <span className="sm:hidden">+2348033760003</span>
+                 <span className="hidden sm:inline">+2348033760003, +2348069645367</span>
+                 <span className="sm:hidden">+2348033760003, +2348069645367</span>
                </div>
               <div className="flex items-center space-x-2 hover:text-blue-200 transition-colors duration-200">
                 <Mail className="h-4 w-4" />
