@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { EquipmentService } from '../services/api'
 import type { Equipment } from '../types'
-import { Search, Filter, Star, Heart } from 'lucide-react'
+import { Search, Filter, Star } from 'lucide-react'
 import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_TEMPLATE } from '../config/constants'
 import { useScrollToTop, scrollToTop } from '../hooks/useScrollToTop'
 
@@ -219,9 +219,6 @@ const ProductCard: React.FC<{ product: Equipment; onWhatsAppQuote: (product: Equ
           e.currentTarget.classList.add('image-loading')
         }}
       />
-      <button className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-50">
-        <Heart className="h-5 w-5 text-red-400 hover:text-red-600" />
-      </button>
       {product.availability === 'Out of Stock' && (
         <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium">
           Out of Stock

@@ -108,20 +108,20 @@ const Contact: React.FC = () => {
               </div>
               <div className="flex-1">
                 <p className="text-gray-700 leading-relaxed mb-4">{officeInfo.address}</p>
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={openGoogleMaps}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm sm:text-base font-medium"
                   >
-                    <MapPin className="h-4 w-4" />
-                    View on Map
+                    <MapPin className="h-4 w-4 flex-shrink-0" />
+                    <span>View on Map</span>
                   </button>
                   <button
                     onClick={getDirections}
-                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 text-sm"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 text-sm sm:text-base font-medium"
                   >
-                    <Navigation className="h-4 w-4" />
-                    Get Directions
+                    <Navigation className="h-4 w-4 flex-shrink-0" />
+                    <span>Get Directions</span>
                   </button>
                 </div>
               </div>
@@ -160,22 +160,22 @@ const Contact: React.FC = () => {
             <div className="space-y-6">
               {/* Map Preview */}
               <div className="bg-gray-100 rounded-lg p-6">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
                   <h3 className="text-lg font-semibold text-gray-800">Office Location</h3>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <button
                       onClick={openGoogleMaps}
-                      className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm"
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm sm:text-base font-medium"
                     >
-                      <MapPin className="h-4 w-4" />
-                      View on Map
+                      <MapPin className="h-4 w-4 flex-shrink-0" />
+                      <span>View on Map</span>
                     </button>
                     <button
                       onClick={getDirections}
-                      className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 text-sm"
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 text-sm sm:text-base font-medium"
                     >
-                      <Navigation className="h-4 w-4" />
-                      Get Directions
+                      <Navigation className="h-4 w-4 flex-shrink-0" />
+                      <span>Get Directions</span>
                     </button>
                   </div>
                 </div>
